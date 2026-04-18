@@ -59,6 +59,13 @@ Abre `http://localhost:5173` en tu navegador para usar la app.
 - Añadir modo oscuro
 - Mejorar diseño con CSS o librería UI
 
+## Autor
+
+**ShadouDev**
+
+GitHub: https://github.com/ShadouDev-Pro
+
 ## Licencia
 
-Proyecto personal. Usa y modifica libremente.
+Este proyecto está bajo la licencia MIT.
+Puedes usarlo, modificarlo y distribuirlo libremente.
