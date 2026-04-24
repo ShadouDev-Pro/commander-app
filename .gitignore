@@ -32,6 +32,11 @@ dist-ssr
 *.sln
 *.sw?
 
+# No games save files
+saves/*
+!saves/.gitkeep
+
+
 # Vite / npm cache
 .vite
 .cache
