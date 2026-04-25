@@ -20,6 +20,9 @@ export default function GamePage() {
 
           <button onClick={() => changeLife(index, 1)}>+1</button>
           <button onClick={() => changeLife(index, -1)}>-1</button>
+          {/* Suma 5 y Resta 5 */}
+          <button onClick={() => changeLife(index, 5)}>+5</button>
+          <button onClick={() => changeLife(index, -5)}>-5</button>
         </div>
       ))}
     </div>
