@@ -3,16 +3,19 @@ import { useTheme } from "../../shared/hooks/useTheme";
 import Input from "../../shared/components/Input";
 import Button from "../../shared/components/Button";
 import ThemeToggle from "../../shared/components/ThemeToggle";
+import DeckSelector from "../../deck/components/DeckSelector";
 
 export default function GameSetup({ onStartGame }) {
   const { theme } = useTheme();
   const [playerCount, setPlayerCount] = useState(2);
   const [playerNames, setPlayerNames] = useState(Array(2).fill(""));
+  const [selectedDecks, setSelectedDecks] = useState(Array(2).fill(null));
 
   const handlePlayerCountChange = (count) => {
     if (count >= 2 && count <= 6) {
       setPlayerCount(count);
       setPlayerNames(Array(count).fill(""));
+      setSelectedDecks(Array(count).fill(null));
     }
   };
 
@@ -22,11 +25,17 @@ export default function GameSetup({ onStartGame }) {
     setPlayerNames(newNames);
   };
 
+  const handleDeckChange = (playerIndex, deckId) => {
+    const newDecks = [...selectedDecks];
+    newDecks[playerIndex] = deckId;
+    setSelectedDecks(newDecks);
+  };
+
   const handleStartGame = () => {
     const finalNames = playerNames.map((name, index) =>
       name.trim() || `Jugador ${index + 1}`
     );
-    onStartGame(finalNames);
+    onStartGame(finalNames, selectedDecks);
   };
 
   return (
@@ -108,23 +117,25 @@ export default function GameSetup({ onStartGame }) {
           >
             Cantidad de Jugadores
           </h3>
-          <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "15px", justifyContent: "center", flexWrap: "wrap", marginTop: "10px" }}>
             {[2, 3, 4, 5, 6].map((count) => (
               <button
                 key={count}
                 onClick={() => handlePlayerCountChange(count)}
                 style={{
-                  padding: "12px 18px",
-                  fontSize: "16px",
+                  padding: "15px 20px",
+                  fontSize: "18px",
                   fontWeight: "bold",
                   backgroundColor:
                     playerCount === count ? "rgba(211, 166, 37, 0.3)" : "transparent",
                   color: playerCount === count ? theme.colors.warning : theme.colors.textSecondary,
                   border: `2px solid ${playerCount === count ? theme.colors.warning : "rgba(211, 166, 37, 0.2)"}`,
-                  borderRadius: "6px",
+                  borderRadius: "8px",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
                   textShadow: playerCount === count ? "0 0 10px rgba(211, 166, 37, 0.5)" : "none",
+                  minWidth: "50px",
+                  margin: "5px",
                 }}
               >
                 {count}
@@ -170,8 +181,47 @@ export default function GameSetup({ onStartGame }) {
           </div>
         </div>
 
+        {/* Deck Selection Section */}
+        <div style={{ marginBottom: "35px" }}>
+          <h3
+            style={{
+              marginTop: 0,
+              marginBottom: "15px",
+              fontSize: "14px",
+              color: theme.colors.text,
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+              fontWeight: "bold",
+            }}
+          >
+            Seleccionar Decks
+          </h3>
+          <p
+            style={{
+              margin: "0 0 15px 0",
+              fontSize: "12px",
+              color: theme.colors.textSecondary,
+            }}
+          >
+            Elige un deck para cada jugador
+          </p>
+          <div style={{ maxHeight: "400px", overflowY: "auto" }}>
+            {Array.from({ length: playerCount }, (_, index) => (
+              <div key={index} style={{ marginBottom: "20px" }}>
+                <h4 style={{ margin: "0 0 10px 0", color: theme.colors.text }}>
+                  Deck para {playerNames[index].trim() || `Jugador ${index + 1}`}
+                </h4>
+                <DeckSelector
+                  onDeckSelect={(deckId) => handleDeckChange(index, deckId)}
+                  selectedDeckId={selectedDecks[index]}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Start Button */}
-        <Button onClick={handleStartGame} variant="primary">
+        <Button onClick={handleStartGame} variant="gold">
           Iniciar Partida
         </Button>
       </div>

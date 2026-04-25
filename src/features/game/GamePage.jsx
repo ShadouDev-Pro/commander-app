@@ -10,10 +10,11 @@ export default function GamePage() {
   const [gameStarted, setGameStarted] = useState(false);
   const [players, setPlayers] = useState([]);
 
-  const handleStartGame = (playerNames) => {
-    const newPlayers = playerNames.map((name) => ({
+  const handleStartGame = (playerNames, selectedDecks) => {
+    const newPlayers = playerNames.map((name, index) => ({
       name,
       life: 40,
+      deckId: selectedDecks[index], // Agregar deckId al player
     }));
     setPlayers(newPlayers);
     setGameStarted(true);
@@ -104,8 +105,7 @@ export default function GamePage() {
         {players.map((player, index) => (
           <PlayerCard
             key={index}
-            playerName={player.name}
-            life={player.life}
+            player={player}
             index={index}
             onChangeLife={changeLife}
           />

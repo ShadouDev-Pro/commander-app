@@ -48,6 +48,17 @@ export default function Button({ children, onClick, variant = "primary", disable
         : "linear-gradient(135deg, #E53935 0%, #C62828 100%)",
       color: "white",
     },
+    gold: {
+      ...baseStyles,
+      background: "linear-gradient(135deg, #D3A625 0%, #A0791D 100%)",
+      color: "#FFE5B4",
+      textShadow: "0 2px 4px rgba(0, 0, 0, 0.8)",
+      boxShadow: `
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(211, 166, 37, 0.4)
+      `,
+    },
   };
 
   const handleMouseEnter = (e) => {

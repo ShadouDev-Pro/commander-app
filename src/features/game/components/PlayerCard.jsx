@@ -1,9 +1,12 @@
 import { useTheme } from "../../shared/hooks/useTheme";
 import { useState } from "react";
+import { getDeckById } from "../../deck/services/deckService";
 
-export default function PlayerCard({ playerName, life, index, onChangeLife }) {
+export default function PlayerCard({ player, index, onChangeLife }) {
   const { theme } = useTheme();
   const [pressedButton, setPressedButton] = useState(null);
+
+  const deck = player.deckId ? getDeckById(player.deckId) : null;
 
   const cardStyle = {
     margin: "15px",
@@ -139,9 +142,29 @@ export default function PlayerCard({ playerName, life, index, onChangeLife }) {
         }}
       ></div>
 
-      <h2 style={playerNameStyle}>{playerName}</h2>
+      <h2 style={playerNameStyle}>{player.name}</h2>
 
-      <div style={lifeCounterStyle}>{life}</div>
+      {deck && (
+        <div style={{
+          marginBottom: "15px",
+          padding: "10px",
+          background: "rgba(211, 166, 37, 0.1)",
+          borderRadius: "6px",
+          border: "1px solid rgba(211, 166, 37, 0.3)",
+        }}>
+          <div style={{ fontSize: "12px", color: theme.colors.textSecondary, marginBottom: "5px" }}>
+            Commander:
+          </div>
+          <div style={{ fontSize: "14px", fontWeight: "bold", color: theme.colors.text }}>
+            {deck.commander.name}
+          </div>
+          <div style={{ fontSize: "12px", color: theme.colors.textSecondary }}>
+            {deck.commander.mana}
+          </div>
+        </div>
+      )}
+
+      <div style={lifeCounterStyle}>{player.life}</div>
 
       <div style={buttonContainerStyle}>
         <button

@@ -7,6 +7,11 @@ export default function Input({ label, value, onChange, placeholder, type = "tex
   const inputBorderColor = theme.isDarkMode ? "rgba(211, 166, 37, 0.3)" : "rgba(211, 166, 37, 0.4)";
   const inputFocusBorder = theme.isDarkMode ? "rgba(211, 166, 37, 0.8)" : "rgba(211, 166, 37, 0.6)";
 
+  // Color diferente cuando está vacío
+  const emptyInputBgColor = value.trim() === ""
+    ? (theme.isDarkMode ? "#2a2a2e" : "#F8F6F0")
+    : inputBgColor;
+
   return (
     <div style={{ marginBottom: "18px", textAlign: "left" }}>
       {label && (
@@ -36,7 +41,7 @@ export default function Input({ label, value, onChange, placeholder, type = "tex
           border: `2px solid ${inputBorderColor}`,
           width: "100%",
           boxSizing: "border-box",
-          background: inputBgColor,
+          background: emptyInputBgColor,
           color: theme.colors.text,
           transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           boxShadow: "inset 0 2px 4px rgba(0, 0, 0, 0.1)",
