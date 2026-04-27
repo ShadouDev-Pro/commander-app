@@ -6,6 +6,7 @@ export const Card = {
   mana: String, // Costo de maná '{2}{W}{U}'
   colors: Array, // Colores ['W', 'U']
   type: String, // Tipo de carta 'Creature — Human Wizard'
+  keywords: Array, // Keywords como ['Flying', 'Trample', 'Flash']
   text: String, // Texto de la carta
   image: String, // URL de la imagen
   power: String, // Para criaturas

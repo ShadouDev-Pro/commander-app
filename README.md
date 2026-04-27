@@ -10,10 +10,10 @@ Una aplicación web moderna y completa para gestionar y disfrutar de partidas de
 ## ✨ Características Principales
 
 ### 🎴 Gestión de Cartas y Mazos
-- **Visualización de Cartas**: Componente `CardDisplay` para mostrar detalles de cartas individuales.
+- **Visualización de Cartas**: Componente `CardDisplay` para mostrar detalles de cartas individuales, incluyendo **keywords** como Flying, Trample, Flash, Haste, etc.
 - **Selector de Mazos**: `DeckSelector` para elegir entre mazos predefinidos o personalizados.
 - **Vista Previa de Mazos**: `DeckPreview` para inspeccionar composiciones de mazos.
-- **Mazos de Muestra**: Colección de mazos de ejemplo incluidos en `sampleDecks.js`.
+- **Mazos de Muestra**: Colección de mazos de ejemplo incluidos en `sampleDecks.js`, con cartas que incluyen diversos keywords.
 
 ### ⚔️ Mecánicas de Juego
 - **Tablero de Juego**: `GameBoard` con zonas estratégicas (`GameZones`).
@@ -24,6 +24,7 @@ Una aplicación web moderna y completa para gestionar y disfrutar de partidas de
 - **Información de Jugadores**: `PlayerInfo` y `PlayerCard` para detalles de cada jugador.
 - **Controles de Juego**: `GameControls` para acciones como pasar turno, mulligan, etc.
 - **Configuración Inicial**: `GameSetup` para preparar la partida.
+- **Keywords y Efectos**: Soporte para keywords de Magic como Flying, Trample, Flash, Haste, First Strike, Vigilance, etc., mostrados en las cartas.
 
 ### 👥 Gestión de Jugadores
 - **Avatares de Jugadores**: `PlayerAvatar` para personalización visual.

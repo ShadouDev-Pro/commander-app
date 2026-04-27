@@ -91,6 +91,21 @@ export default function CardDisplay({
         {card.type}
       </div>
 
+      {/* Keywords */}
+      {card.keywords && card.keywords.length > 0 && (
+        <div style={{ 
+          fontSize: `calc(${currentSize.fontSize} * 0.8)`, 
+          color: '#FFD700', 
+          fontStyle: 'italic',
+          overflow: 'hidden', 
+          textOverflow: 'ellipsis', 
+          whiteSpace: 'nowrap',
+          marginBottom: '2px'
+        }}>
+          {Array.isArray(card.keywords) ? card.keywords.join(', ') : card.keywords}
+        </div>
+      )}
+
       {/* Power/Toughness */}
       {card.power && card.toughness && (
         <div style={{ 
