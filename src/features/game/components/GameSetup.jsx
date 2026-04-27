@@ -32,9 +32,18 @@ export default function GameSetup({ onStartGame }) {
   };
 
   const handleStartGame = () => {
+    // Validar que todos los decks estén seleccionados
+    const unselectedDeck = selectedDecks.findIndex(deck => !deck);
+    if (unselectedDeck !== -1) {
+      alert(`Por favor selecciona un deck para Jugador ${unselectedDeck + 1}`);
+      return;
+    }
+
+    // Validar que todos tengan nombre
     const finalNames = playerNames.map((name, index) =>
       name.trim() || `Jugador ${index + 1}`
     );
+
     onStartGame(finalNames, selectedDecks);
   };
 
